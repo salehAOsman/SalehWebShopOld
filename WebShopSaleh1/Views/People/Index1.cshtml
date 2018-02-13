@@ -1,0 +1,47 @@
+﻿@model System.Data.DataTable
+@using System.Data
+@{
+    ViewBag.Title = "Index1";
+}
+
+<h2>Index1 implementing jQuery database in asp.net</h2>
+<div style="width:90%;margin:0 auto">
+    <table id="MyTable1">
+        <thead>
+            <tr>
+               @*<th>Id</th>*@ 
+                <th>Full1 Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@*Load jQuery*@
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+@*load js library*@
+@section Scripts{
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#MyTable1").DataTable({
+                "ajax": {
+                    "url": "/People/loaddata",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+            @*{ "data": "Id", "autoWidth": true },*@
+            { "data": "FullName", "autoWidth": true },
+            { "data": "Address", "autoWidth": true },
+            { "data": "City", "autoWidth": true },
+            { "data": "Email", "autoWidth": true }
+                ]
+            });
+        });
+      </script>
+    }
+
+
